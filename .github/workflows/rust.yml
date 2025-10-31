@@ -33,7 +33,7 @@ jobs:
             ${{ runner.os }}-cargo-
 
       - name: setup wasm-bindgen
-        run: cargo install wasm-bindgen-cli
+        run: cargo install -f wasm-bindgen-cli --version 0.2.101
 
       - name: build
         run: |
