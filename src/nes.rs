@@ -19,7 +19,7 @@ pub struct Nes {
 impl Nes {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Self {
-        let mut rom_bytes = include_bytes!("../test_roms/4_TheStack.nes").to_vec();
+        let mut rom_bytes = include_bytes!("../test_roms/7_Graphics.nes").to_vec();
 
         let header = &[0x4E, 0x45, 0x53, 0x1A];
         if !rom_bytes.starts_with(header) {
