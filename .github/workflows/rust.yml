@@ -1,0 +1,42 @@
+name: Deploy to pages
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: setup wasm-bindgen
+        run: cargo install wasm-bindgen-cli
+
+      - name: build
+        run: |
+          cargo build --target wasm32-unknown-unknown --release
+          wasm-bindgen --target web --out-dir pkg --no-typescript target/wasm32-unknown-unknown/release/*.wasm
+
+      - name: prepare
+        run: |
+          mkdir dist
+          cp index.html dist/
+          cp lib.js dist/
+          cp worker.js dist/
+          cp main.js dist/
+          cp -r pkg dist/
+
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
