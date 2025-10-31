@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>NEST</title>
+    </head>
+    <body>
+        <script type="module" src="./main.js" defer></script>
+        <canvas id="screen" width="256" height="240" style="image-rendering: pixelated"></canvas>
+        <button id="swap">Swap Rom</button>
+
+        <main style="display: flex; flex-direction: row">
+            <fieldset style="font-family: monospace; width: 900px">
+                <legend>Tracelog</legend>
+
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr)">
+                    <div>Asm</div>
+                    <div>Reg</div>
+                    <table id="tracelog-asm"> </table>
+                    <table id="tracelog-reg"> </table>
+                </div>
+            </fieldset>
+
+            <fieldset style="font-family: monospace; font-size: 12px; width: 200px">
+                <legend>Ram</legend>
+
+                <pre id="ram"></pre>
+            </fieldset>
+
+            <div style="display: flex; flex-direction: column">
+                <fieldset style="font-family: monospace; font-size: 12px; width: 200px">
+                    <legend>PRG Rom</legend>
+
+                    <pre id="prom"></pre>
+                </fieldset>
+            </div>
+
+            <fieldset style="font-family: monospace; font-size: 12px; width: 200px">
+                <legend>VRam</legend>
+
+                <pre id="vram"></pre>
+            </fieldset>
+
+            <div style="display: flex; flex-direction: column">
+                <fieldset style="font-family: monospace; font-size: 12px; width: 200px">
+                    <legend>CHR Rom</legend>
+
+                    <pre id="crom"></pre>
+                </fieldset>
+            </div>
+        </main>
+    </body>
+</html>
